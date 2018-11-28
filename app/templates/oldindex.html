@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+  <head>
+    <title>Interior Navigator</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Lato:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='styles/main.css') }}>
+  </head>
+<body>
+  <div id="container">
+
+    <div id="header">
+      <img src={{ url_for('static', filename='image/whomst.jpg') }}>
+    </div>
+
+    <div id="optionsCont">
+      <div id="options">
+        <div id="tEmpty"></div>
+        <h2><span>Quick Search</span></h2>
+        <div id="option" class="find notLast">
+            <form action="/bathroom/" method="post">
+            <button name="bathrooms." type="submit">bathrooms.</button>
+            </form>
+           <form action="/lab/" method="post">
+            <button name="labs." type="submit">labs.</button>
+            </form>
+           <form action="/study_space/" method="post">
+            <button name="study spaces" type="submit">study spaces.</button>
+            </form>
+        </div>
+
+        <h2><span>FILTERS</span></h2>
+        <div id="option" class="filters">
+          <label rel="">
+            <input type="checkbox">
+            <span class="chk"></span>accessibility.
+          </label>
+          <label rel="">
+            <input type="checkbox">
+            <span class="chk"></span>tba.
+          </label>
+          <label rel="">
+            <input type="checkbox">
+            <span class="chk"></span>tba.
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div id="tEmpty"></div>
+
+
+    <div id="search">
+      FIND YOUR CLASS <em>!</em>
+      <form action="/search" method="get" class="searcher">
+        <input type="text" name="q" value="" placeholder="e.g.: RS303"  class="srchTxt"/> <!-- SearchQuery tba! -->
+      </form>
+    </div>
+    <canvas  id="canvas" height="500px" width="1000px" onclick="canvasClicked()"></canvas >
+
+    <div id="bEmpty"></div>
+
+    <div id="bottom">
+
+      <h3><hm style="border-bottom:1px solid #bbb;padding-bottom:5px;"> The Gerstein Club </hm></h3>
+      <h4> <b>©</b> 2018,&nbsp; <b>MIE350</b> </h4>
+
+    </div>
+
+  </div>
+<script>
+
+    function canvasClicked(){
+        //alert(event.clientX)
+
+
+
+    }
+    function putActiveOnMap(src,width,height,x,y){
+        var elem = document.createElement("img");
+        elem.setAttribute("src", src);
+        //elem.style.position = "absolute";
+
+
+        //elem.setAttribute("width",width);
+        //elem.setAttribute("width",height);
+
+
+
+        var c = document.getElementById("canvas");
+        var ctx = c.getContext("2d");
+        ctx.imageSmoothingEnabled=false;
+
+
+
+
+        elem.onload=function() {
+            ctx.drawImage(elem, x, y, width, height);
+        }
+
+        /*
+        var plx= x.toString();
+        var placex=plx.concat("px");
+
+        var ply= y.toString();
+        var placey=ply.concat("px");
+
+        elem.style.top=placey;
+        elem.style.left=placex;
+        document.getElementById("canvas").appendChild(elem);
+        */
+
+    }
+
+    function activatEachAOM(AOM){
+        for (var i=0,size=AOM.length;i<(size);i++){
+            putActiveOnMap(AOM[i].src,AOM[i].width,AOM[i].height,AOM[i].x_cord,AOM[i].y_cord)
+        }
+    }
+
+
+
+    var AOM={{ AOM|tojson }}
+
+    activatEachAOM(AOM)
+
+</script>
+
+
+
+
+</body>

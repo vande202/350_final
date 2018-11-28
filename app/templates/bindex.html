@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:background-repeat="http://www.w3.org/1999/xhtml"
+      xmlns:background-size="http://www.w3.org/1999/xhtml" xmlns:background-position="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    </style>
+
+    <title>Gerstein Club Campus Navigation System</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href={{ url_for('static', filename="vendor/bootstrap/css/bootstrap.min.css") }} rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href={{ url_for('static', filename="css/simple-sidebar.css") }} rel="stylesheet">
+
+</head>
+
+<body background ={{ url_for('static', filename='image/BG.jpg') }}>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                 <li class="sidebar-brand">
+                    <a href="#"> Quick Search </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <form action="/Navigation-In-Campus/" method="post">
+                            <button name="Navigation In Campus" type="submit">Navigation In Campus</button>
+                        </form>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <form action="/Navigation-In-Building/" method="post">
+                            <button name="Navigation In Building" type="submit">Navigation In Building</button>
+                        </form>
+                    </a>
+                </li>
+                 <li>
+                     <a href="#">
+                         <form action="/scheduling/" method="post">
+                            <button name="Book a room" type="submit">Book a room</button>
+                         </form>
+                     </a>
+                 </li>
+                <li>
+                     <a href="#">
+                         <form action="/news/" method="post">
+                            <button name="Campus News" type="submit">Campus News</button>
+                         </form>
+                     </a>
+                 </li>
+                <li>
+                     <a href="#">
+                         <form action="/" method="post">
+                             <button name="Return to main page" type="submit">Return to main page</button>
+                         </form>
+                     </a>
+                 </li>
+
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <h1>Building Interior Navigation {{ b }} {{ f }} {{ t }}</h1>
+            <form action="/Navigation-In-Building/" method="post">
+                <p>Building Name{{ form.BuildingName }}</p>
+                <p>From{{ form.From }}</p>
+                <p>To{{ form.To }}</p>
+                 <input type="submit">
+                </form>
+
+             <canvas  id="canvas" height="1000px" width="1000px" onclick="canvasClicked()"></canvas >
+            <div class="container-fluid">
+                <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Open Menu</a>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src={{ url_for('static', filename="vendor/jquery/jquery.min.js") }}></script>
+    <script src={{ url_for('static', filename="vendor/bootstrap/js/bootstrap.bundle.min.js") }}></script>
+    <script src={{ url_for('static', filename="js/canvastools.js") }}></script>
+
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    </script>
+<script>
+    var AOM ={{ AOM|tojson }};
+
+    window.onload= function () {
+
+        activatEachAOM(AOM);
+
+
+
+    };
+
+
+    function canvasClicked() {
+        var x_click = event.clientX;
+        var y_click = event.clientY;
+        handlecanvasClick(AOM, x_click, y_click);
+
+
+
+    }
+</script>
+
+
+
+
+</body>
+
+</html>

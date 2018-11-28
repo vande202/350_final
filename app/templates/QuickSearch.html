@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+  <head>
+    <title>{{ msg }} </title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Lato:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='styles/main.css') }}>
+  </head>
+<body>
+  <div id="container">
+
+    <div id="header">
+      <img src={{ url_for('static', filename='images/whomst.jpg') }}>
+    </div>
+
+<div id="optionsCont">
+      <div id="options">
+        <div id="tEmpty"></div>
+          <h2><span>Quick Search</span></h2>
+          <div id="option" class="find notLast">
+              <form action="/" method="post">
+                  <button name="Return to main page" type="submit">Return to main page</button>
+              </form>
+              <form action="/bathroom/" method="post">
+                  <button name="bathrooms." type="submit">bathrooms.</button>
+              </form>
+              <form action="/lab/" method="post">
+                  <button name="labs." type="submit">labs.</button>
+              </form>
+              <form action="/study_space/" method="post">
+                  <button name="study spaces" type="submit">study spaces.</button>
+              </form>
+        </div>
+
+        <h2><span>FILTERS</span></h2>
+        <div id="option" class="filters">
+          <label rel="">
+            <input type="checkbox">
+            <span class="chk"></span>accessibility.
+          </label>
+          <label rel="">
+            <input type="checkbox">
+            <span class="chk"></span>tba.
+          </label>
+          <label rel="">
+            <input type="checkbox">
+            <span class="chk"></span>tba.
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div id="tEmpty"></div>
+    <div id="search">
+         Nearby {{ msg }}<em>:</em>
+    </div>
+    <div id="canvas">
+        <em>
+            {% for para in lmsg %}
+            <p>{{para}}</p>
+            {% endfor %}
+        </em>
+    </div>
+
+    <div id="bEmpty"></div>
+
+    <div id="bottom">
+
+      <h3><hm style="border-bottom:1px solid #bbb;padding-bottom:5px;"> The Gerstein Club </hm></h3>
+      <h4> <b>©</b> 2018,&nbsp; <b>MIE350</b> </h4>
+
+    </div>
+
+  </div>
+</body>
+</html>
